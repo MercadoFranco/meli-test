@@ -1,0 +1,13 @@
+{
+  "name": "meli-test-back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "babel index.js -d dist",
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
