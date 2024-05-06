@@ -1,0 +1,32 @@
+@import src/variables
+
+.baseButton
+    border-radius: .4rem
+    transition: background-color 0.15s ease
+    border: none
+    font-family: inter
+    font-size: 1.25rem
+    padding: 1rem 1.25rem
+.baseButton:hover
+    cursor: pointer
+
+.fullWidth
+    width: 100%
+    display: flex
+    justify-content: center
+
+.primary
+    background-color: $primary-color
+    color: $gray-400
+
+.secondary
+    background-color: $secondary-color
+    color: white
+.secondary:hover
+    background-color: darken($secondary-color, 5)
+.secondary:active
+    background-color: darken($secondary-color, 15)
+
+.disabled
+    cursor: default !important
+    filter: grayscale(0.5)

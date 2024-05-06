@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-import { countDecimals } from "../utils.js";
 
 export default async (req, res) => {
   const id = req.params.id;
@@ -23,10 +22,10 @@ export default async (req, res) => {
         title: baseData.title,
         price: {
           currency: baseData.currency_id,
-          amount: baseData.price,
-          decimals: countDecimals(baseData.price),
+          amount: Math.floor(baseData.price),
+          decimals: baseData.price - Math.floor(baseData.price),
         },
-        picture: baseData.thumbnail,
+        picture: baseData.pictures?.[0]?.url ?? baseData.thumbnail,
         condition: baseData.condition,
         free_shipping: baseData.shipping?.free_shipping ?? false,
         sold_quantity: baseData.initial_quantity,

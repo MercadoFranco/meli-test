@@ -1,21 +1,20 @@
 import fetch from "node-fetch";
-import { countDecimals } from "../utils.js";
 
 export default async (req, res) => {
-  const { q, page } = req.query;
+  const { q } = req.query;
 
   try {
     const response = await fetch(
-      `https://api.mercadolibre.com/sites/MLA/search?q=${q}&offset=${
-        (page ?? 0) * 50
-      }`
+      `https://api.mercadolibre.com/sites/MLA/search?q=${q}&limit=${4}`
     );
     const data = await response.json();
 
+    const categoryItem = data.filters?.find(
+      (filter) => filter.id === "category"
+    )?.values?.[0];
+
     const formattedCategories =
-      data.available_filters
-        ?.find((filter) => filter.id === "category")
-        ?.values?.map((val) => val.name) ?? [];
+      categoryItem?.path_from_root?.map((val) => val.name) ?? [];
 
     const formattedItems = data.results.map((item) => {
       return {
@@ -23,8 +22,8 @@ export default async (req, res) => {
         title: item.title,
         price: {
           currency: item.currency_id,
-          amount: item.price,
-          decimals: countDecimals(item.price),
+          amount: Math.floor(item.price),
+          decimals: item.price - Math.floor(item.price),
         },
         picture: item.thumbnail,
         condition: item.condition,
@@ -36,10 +35,6 @@ export default async (req, res) => {
       author: {
         name: "String",
         lastname: "String",
-      },
-      pagination: {
-        totalPages: Math.ceil(data.paging.total / 50),
-        page: data.paging.offset / 50,
       },
       items: formattedItems,
       categories: formattedCategories,

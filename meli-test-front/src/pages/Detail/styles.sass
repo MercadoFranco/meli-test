@@ -1,0 +1,50 @@
+@import src/variables
+@import src/mixins
+
+.picture
+    width: 100%
+    max-height: 50vh
+    +respond-to(md)
+        width: auto
+        max-height: 28rem
+    +respond-to(lg)
+        width: 42.5rem
+        max-height: 32rem
+
+    object-fit: scale-down
+    display: flex
+    flex-shrink: 0
+
+.image-container
+    display: flex
+    flex-direction: column
+    +respond-to(md)
+        flex-direction: row
+    padding: 1rem
+    gap: 4rem
+
+.main-data
+    display: flex
+    flex-direction: column
+    gap: 1rem
+    h3
+        font-weight: 700
+    h1
+        margin: 1rem 0
+        font-weight: 600
+        display: flex
+        align-items: flex-start
+        line-height: 0.75
+        span
+            font-size: 1.5rem
+            font-weight: 400
+.description
+    +respond-to(lg)
+        max-width: 42.5rem
+    padding: 1rem
+    h2
+        font-weight: 400
+    h5
+        margin: 2rem 0
+        font-weight: 400
+        color: $gray-200

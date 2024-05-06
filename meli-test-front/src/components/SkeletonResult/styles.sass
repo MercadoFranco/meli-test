@@ -1,0 +1,40 @@
+@import src/variables
+@import src/animations
+@import src/mixins
+
+.skeleton-result
+    margin-top: 3rem
+    display: flex
+    flex-direction: column
+
+.skeleton-item
+    display: flex
+    gap: 1rem
+
+.skeleton-content
+    display: flex
+    width: 100%
+    flex-direction: column
+    gap: 1rem
+    margin-top: 1rem
+
+.skeleton-price
+    height: 29px
+    width: 110px
+    background: $gray-100
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
+
+.skeleton-title
+    height: 22px
+    width: 100%
+    +respond-to(md)
+        width: 520px
+    background: $gray-100
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
+
+.skeleton-image
+    width: 180px
+    height: 180px
+    flex-shrink: 0
+    background: $gray-100
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
